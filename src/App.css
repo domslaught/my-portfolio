@@ -1,0 +1,169 @@
+  .portfolio-app {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    /* ← add this */
+    background-color: transparent;
+    /* ← change this */
+    color: var(--text-primary);
+  }
+
+  body,
+  #root {
+    margin: 0;
+  }
+
+  main {
+    flex-grow: 1;
+    position: relative;
+  }
+
+  /* ── Hero-to-content transition blend ── */
+  main::after {
+    content: '';
+    position: absolute;
+    top: 100vh;
+    left: 0;
+    right: 0;
+    height: 120px;
+    background: linear-gradient(to bottom,
+        var(--bg-color) 0%,
+        transparent 100%);
+    pointer-events: none;
+    z-index: 2;
+  }
+
+
+  /* ── Navbar base (transparent over hero) ─────────── */
+  .portfolio-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 100;
+    background-color: transparent;
+    border-bottom: 1px solid transparent;
+    backdrop-filter: blur(0px);
+    -webkit-backdrop-filter: blur(0px);
+    transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Scrolled state (Floating Center Capsule) ────── */
+  .portfolio-navbar.scrolled {
+    width: max-content;
+    max-width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 1.25rem;
+    border-radius: 100px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background-color: rgba(13, 13, 15, 0.8);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(255, 255, 255, 0.02);
+  }
+
+  .portfolio-navbar.scrolled .nav-container {
+    padding: 0.65rem 1.75rem;
+    gap: 3.5rem;
+    max-width: 100%;
+  }
+
+  /* ── Nav container — flex-alignment ─────────────── */
+  .nav-container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    transition: padding 0.5s cubic-bezier(0.16, 1, 0.3, 1), gap 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+
+  /* ── Logo ─────────────────────────────────────────── */
+  .nav-logo {
+    font-size: 1.1rem;
+    font-weight: 800;
+    color: #fff;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo-accent {
+    color: var(--accent);
+    font-size: 1.6rem;
+    line-height: 0;
+    display: inline-block;
+    animation: logoPulse 2.5s ease-in-out infinite;
+  }
+
+  /* ── Nav links ────────────────────────────────────── */
+  .nav-links {
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    justify-content: flex-end;
+  }
+
+  .nav-links a {
+    font-size: 0.88rem;
+    font-weight: 500;
+    color: rgba(245, 245, 247, 0.65);
+    letter-spacing: 0.02em;
+    transition: color 0.3s ease;
+  }
+
+  .nav-links a:hover {
+    color: #fff;
+  }
+
+  .portfolio-navbar.scrolled .nav-links a {
+    color: rgba(255, 255, 255, 0.88);
+  }
+
+  .portfolio-navbar.scrolled .nav-links a:hover {
+    color: #ffffff;
+  }
+
+  /* ── CTA button in nav ───────────────────────────── */
+  .nav-links .nav-contact-btn {
+    background: linear-gradient(135deg, rgba(255, 87, 34, 0.15), rgba(255, 87, 34, 0.03));
+    border: 1px solid rgba(255, 87, 34, 0.4);
+    padding: 0.6rem 1.4rem;
+    border-radius: 8px;
+    color: #fff !important;
+    font-weight: 600;
+    font-size: 0.88rem;
+    cursor: pointer;
+    backdrop-filter: blur(4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  .nav-links .nav-contact-btn:hover {
+    background: var(--accent);
+    box-shadow: 0 0 20px rgba(255, 87, 34, 0.4);
+    transform: translateY(-1px);
+  }
+
+  /* ── Responsive ──────────────────────────────────── */
+  @media (max-width: 768px) {
+    .nav-container {
+      padding: 1rem 1.25rem;
+    }
+
+    .portfolio-navbar.scrolled .nav-container {
+      padding: 0.6rem 1.25rem;
+      gap: 1.5rem;
+    }
+
+    .nav-links {
+      gap: 1.25rem;
+    }
+
+    .nav-links a:not(.nav-contact-btn) {
+      display: none;
+    }
+  }

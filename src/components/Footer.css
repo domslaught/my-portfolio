@@ -1,0 +1,108 @@
+.footer-section {
+  position: relative;
+  padding: 9rem 2rem 5rem;
+  background: transparent;
+  border-top: 1px solid var(--card-border);
+  overflow: hidden;
+  cursor: none; /* hide system cursor inside footer */
+}
+
+.footer-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* ── Magnetic floating button ────────────────────── */
+.magnetic-btn {
+  position: absolute;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+  opacity: 0;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.85rem;
+  font-weight: 700;
+  padding: 0.6rem 1.2rem;
+  border-radius: 50px;
+  white-space: nowrap;
+  z-index: 10;
+  transition:
+    opacity 0.2s ease,
+    transform 0.08s linear; /* snappy follow */
+  box-shadow: 0 6px 20px rgba(255, 87, 34, 0.4);
+}
+.magnetic-btn.visible {
+  pointer-events: auto;
+  opacity: 1;
+}
+
+/* ── Kinetic headline ────────────────────────────── */
+.footer-cta-text {
+  display: block;
+  font-size: clamp(3rem, 7vw, 6.5rem);
+  font-weight: 800;
+  letter-spacing: -0.04em;
+  line-height: 1.05;
+  color: var(--text-primary);
+  margin: 1.5rem 0 5rem;
+  transition: color 0.4s ease;
+}
+.footer-cta-text:hover { color: var(--text-primary); }
+
+.cta-bleed {
+  display: block;
+  background: linear-gradient(90deg, var(--text-primary) 0%, var(--text-primary) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  transition: background 0.5s ease;
+}
+.footer-cta-text:hover .cta-bleed {
+  background: linear-gradient(90deg, var(--text-primary) 0%, var(--accent) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+/* ── Footer meta row ─────────────────────────────── */
+.footer-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-top: 2rem;
+  border-top: 1px solid var(--card-border);
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.footer-info {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  font-size: 0.88rem;
+  color: var(--text-muted);
+}
+
+.meta-sep { color: var(--card-border); }
+
+.footer-email {
+  color: var(--text-muted);
+  transition: color 0.3s ease;
+}
+.footer-email:hover { color: var(--accent); }
+
+.footer-copy {
+  font-size: 0.82rem;
+  color: var(--text-muted);
+}
+
+/* ── Responsive ──────────────────────────────────── */
+@media (max-width: 768px) {
+  .footer-section {
+    padding: 7rem 1.25rem 4rem;
+    cursor: auto; /* restore cursor on touch devices */
+  }
+  .magnetic-btn { display: none; }
+  .footer-meta { flex-direction: column; align-items: flex-start; }
+}

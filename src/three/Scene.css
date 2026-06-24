@@ -1,0 +1,19 @@
+/* ── R3F Fixed Canvas Container ──────────────────────────── */
+.r3f-canvas-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -10;
+  pointer-events: none;
+  /* Force GPU compositing layer for performance */
+  will-change: transform;
+}
+
+/* Allow pointer events on the canvas only (for future interaction) */
+.r3f-canvas-container canvas {
+  display: block;
+  width: 100% !important;
+  height: 100% !important;
+}

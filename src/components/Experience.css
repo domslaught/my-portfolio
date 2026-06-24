@@ -1,0 +1,385 @@
+.exp-section {
+  padding: 9rem 2rem;
+  background: transparent;
+  border-top: 1px solid var(--card-border);
+}
+
+
+
+.exp-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+
+
+.exp-header {
+  margin-bottom: 4rem;
+}
+
+.exp-title {
+
+  font-size: clamp(2rem, 4vw, 3rem);
+
+  color: var(--text-primary);
+
+  margin-bottom: 0.5rem;
+
+}
+
+.exp-sub {
+  font-size: 1.05rem;
+  color: var(--text-muted);
+}
+
+
+
+/* ── Two-column layout ───────────────────────────── */
+
+.exp-cols {
+
+  display: grid;
+
+  grid-template-columns: 1fr 1fr;
+
+  gap: 4rem;
+
+  align-items: start;
+
+}
+
+
+
+.col-label {
+
+  font-size: 0.72rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.15em;
+
+  text-transform: uppercase;
+
+  color: var(--text-muted);
+
+  margin-bottom: 2rem;
+
+  padding-bottom: 0.75rem;
+
+  border-bottom: 1px solid var(--card-border);
+
+}
+
+
+
+/* ── Timeline track ──────────────────────────────── */
+
+.tl-track {
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+
+
+.tl-entry {
+
+  display: flex;
+
+  gap: 1.25rem;
+
+  position: relative;
+
+}
+
+
+
+/* ── Year column ──────────────────────────────────── */
+
+.tl-year-col {
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  flex-shrink: 0;
+
+  width: 52px;
+
+  position: relative;
+
+}
+
+
+
+.tl-year {
+
+  font-size: 0.72rem;
+
+  font-weight: 800;
+
+  color: var(--accent);
+
+  letter-spacing: 0.05em;
+
+  background: var(--bg-color);
+
+  padding: 2px 0;
+
+  white-space: nowrap;
+
+  position: sticky;
+
+  top: 100px;
+  /* stays fixed while content scrolls */
+
+  z-index: 1;
+
+}
+
+
+
+.tl-connector {
+
+  flex: 1;
+
+  width: 1px;
+
+  background: linear-gradient(to bottom, var(--accent) 0%, var(--card-border) 100%);
+
+  margin-top: 6px;
+
+  min-height: 2rem;
+
+}
+
+.tl-entry:last-child .tl-connector {
+  display: none;
+}
+
+
+
+/* ── Card ─────────────────────────────────────────── */
+
+.tl-card {
+
+  flex: 1;
+
+  background: var(--card-bg);
+
+  border: 1px solid var(--card-border);
+
+  border-radius: 12px;
+
+  padding: 1.75rem;
+
+  margin-bottom: 1.5rem;
+
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+
+}
+
+.tl-card:hover {
+
+  border-color: #3c3c45;
+
+  box-shadow: 0 6px 24px rgba(0, 0, 0, 0.4);
+
+}
+
+
+
+.tl-card-header {
+
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: flex-start;
+
+  gap: 1rem;
+
+  margin-bottom: 1rem;
+
+}
+
+
+
+.tl-role {
+
+  font-size: 1.2rem;
+
+  font-weight: 700;
+
+  color: var(--text-primary);
+
+  margin-bottom: 0.25rem;
+
+}
+
+.tl-org {
+
+  font-size: 0.82rem;
+
+  color: var(--text-muted);
+
+  display: block;
+
+}
+
+
+
+.tl-period {
+
+  background: var(--bg-color);
+
+  border: 1px solid var(--card-border);
+
+  color: var(--accent);
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  padding: 0.3rem 0.65rem;
+
+  border-radius: 5px;
+
+  white-space: nowrap;
+
+}
+
+
+
+/* ── Award badges with orange dot ────────────────── */
+
+.tl-awards {
+
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0.5rem;
+
+  margin-bottom: 1rem;
+
+}
+
+
+
+.tl-award-badge {
+
+  display: inline-flex;
+
+  align-items: center;
+
+  gap: 0.4rem;
+
+  font-size: 0.75rem;
+
+  font-weight: 600;
+
+  color: var(--text-muted);
+
+  background: rgba(255, 87, 34, 0.06);
+
+  border: 1px solid rgba(255, 87, 34, 0.2);
+
+  padding: 0.3rem 0.65rem;
+
+  border-radius: 20px;
+
+}
+
+
+
+.award-dot {
+
+  width: 6px;
+
+  height: 6px;
+
+  border-radius: 50%;
+
+  background: var(--accent);
+
+  flex-shrink: 0;
+
+}
+
+
+
+/* ── Items list ──────────────────────────────────── */
+
+.tl-items {
+
+  list-style: none;
+
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 0.6rem;
+
+}
+
+.tl-items li {
+
+  position: relative;
+
+  padding-left: 1.25rem;
+
+  font-size: 0.88rem;
+
+  color: var(--text-muted);
+
+  line-height: 1.55;
+
+}
+
+.tl-items li::before {
+
+  content: '■';
+
+  font-size: 0.5rem;
+
+  color: var(--accent);
+
+  position: absolute;
+
+  left: 0;
+
+  top: 0.4rem;
+
+}
+
+
+
+/* ── Responsive ──────────────────────────────────── */
+
+@media (max-width: 1024px) {
+
+  .exp-cols {
+    grid-template-columns: 1fr;
+    gap: 3rem;
+  }
+
+}
+
+@media (max-width: 600px) {
+
+  .exp-section {
+    padding: 6rem 1.25rem;
+  }
+
+  .tl-card-header {
+    flex-direction: column;
+  }
+
+  .tl-year-col {
+    width: 42px;
+  }
+
+}

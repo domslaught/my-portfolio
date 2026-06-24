@@ -1,0 +1,329 @@
+.hero-section {
+  position: relative;
+  min-height: 100%;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  background-color: transparent;
+  border-top: 1px solid rgba(255, 255, 255, 0.04);
+  /* CSS custom properties updated by JS mousemove */
+  --mouse-x: 50%;
+  --mouse-y: 50%;
+}
+
+
+
+/* ─── Dark dot grid pattern ──────────────────────── */
+.hero-grid-pattern {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background-image:
+    radial-gradient(circle, #2c2c35 1px, transparent 1px);
+  background-size: 36px 36px;
+  opacity: 0.45;
+  pointer-events: none;
+}
+
+/* ─── Interactive cursor glow ─────────────────────── */
+.hero-cursor-glow {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  background: radial-gradient(700px circle at var(--mouse-x) var(--mouse-y),
+      rgba(255, 87, 34, 0.07) 0%,
+      transparent 65%);
+  transition: background 0.1s ease;
+}
+
+/* ─── Hero content ───────────────────────────────── */
+.hero-content {
+  position: relative;
+  z-index: 3;
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 2rem;
+  width: 100%;
+  padding-top: 7rem;
+  padding-bottom: 5rem;
+}
+
+/* ─── Headline ───────────────────────────────────── */
+.hero-headline {
+  display: flex;
+  flex-direction: column;
+  font-size: clamp(2.8rem, 6vw, 5.5rem);
+  font-weight: 800;
+  line-height: 1.1;
+  letter-spacing: -0.035em;
+  color: var(--text-primary);
+  margin: 1rem 0 2rem;
+}
+
+.hero-headline .line {
+  display: block;
+  opacity: 0;
+  animation: terminalBoot 1s cubic-bezier(0.19, 1, 0.22, 1) forwards;
+}
+
+.line-1 {
+  animation-delay: 0.15s;
+}
+
+.line-2 {
+  animation-delay: 0.45s;
+}
+
+.line-3 {
+  animation-delay: 0.75s;
+}
+
+/* ─── Zero CLS Rotating Container Layout ─────────── */
+.rotating-text-container {
+  display: inline-grid;
+  grid-template-columns: 1fr;
+  align-items: center;
+  position: relative;
+  vertical-align: bottom;
+  overflow: hidden;
+  height: 1.15em;
+  margin-bottom: -0.12em;
+}
+
+.rotating-text-item {
+  grid-area: 1 / 1 / 2 / 2;
+  opacity: 0;
+  transform: translateY(100%);
+  transition: opacity 0.5s cubic-bezier(0.16, 1, 0.3, 1), transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+  pointer-events: none;
+  white-space: nowrap;
+  color: var(--text-primary);
+}
+
+.rotating-text-item.active {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.rotating-text-item.exit {
+  opacity: 0;
+  transform: translateY(-100%);
+}
+
+.rotating-text-item.idle {
+  opacity: 0;
+  transform: translateY(100%);
+}
+
+@keyframes terminalBoot {
+  0% {
+    opacity: 0;
+    transform: translateY(12px);
+    filter: brightness(0.4) blur(1px);
+  }
+
+  4% {
+    opacity: 0.25;
+  }
+
+  8% {
+    opacity: 0.05;
+  }
+
+  14% {
+    opacity: 0.7;
+    transform: translateY(8px);
+    filter: brightness(0.7) blur(0.5px);
+  }
+
+  18% {
+    opacity: 0.15;
+  }
+
+  24% {
+    opacity: 0.85;
+    transform: translateY(4px);
+  }
+
+  28% {
+    opacity: 0.4;
+  }
+
+  35% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+  }
+
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+    filter: none;
+  }
+}
+
+/* ─── "automation." highlight + wavy svg ─────────── */
+.word-highlight {
+  position: relative;
+  color: var(--accent);
+  display: inline-block;
+}
+
+
+.wavy-underline path {
+  stroke-dasharray: 700;
+  stroke-dashoffset: 700;
+  animation: drawPath 1.6s cubic-bezier(0.4, 0, 0.2, 1) 0.9s forwards;
+}
+
+/* ─── Sub-text ───────────────────────────────────── */
+.hero-sub {
+  font-size: clamp(0.95rem, 1.8vw, 1.15rem);
+  color: var(--text-muted);
+  max-width: 580px;
+  line-height: 1.7;
+  margin-bottom: 2.5rem;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.5s forwards;
+}
+
+/* ─── CTA buttons ───────────────────────────────── */
+.hero-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: fadeUp 0.8s cubic-bezier(0.22, 1, 0.36, 1) 0.65s forwards;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background-color: var(--accent);
+  color: #fff;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.75rem;
+  border-radius: 8px;
+  letter-spacing: 0.01em;
+  transition: transform 0.3s ease, box-shadow 0.3s ease, background-color 0.3s ease;
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 10px 30px rgba(255, 87, 34, 0.35);
+}
+
+.btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  color: var(--text-muted);
+  font-weight: 500;
+  font-size: 0.95rem;
+  padding: 0.85rem 1.5rem;
+  border: 1px solid var(--card-border);
+  border-radius: 8px;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.btn-ghost:hover {
+  color: var(--text-primary);
+  border-color: #555;
+}
+
+/* ─── Scroll invite ─────────────────────────────── */
+.scroll-invite {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  margin-top: 5rem;
+  font-size: 0.7rem;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  opacity: 0;
+  animation: fadeUp 0.8s 1.1s forwards;
+}
+
+.scroll-line {
+  width: 40px;
+  height: 1px;
+  background: var(--card-border);
+}
+
+/* ─── Responsive ─────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-content {
+    padding: 0 1.25rem;
+    padding-top: 6rem;
+  }
+
+  .hero-headline {
+    font-size: clamp(2.2rem, 9vw, 3.2rem);
+  }
+
+  .wavy-underline {
+    bottom: -10px;
+  }
+
+  .scroll-invite {
+    margin-top: 3.5rem;
+  }
+}
+
+
+/* Styling for Option 1: Tactical Lens */
+.lens-focus-wrapper {
+  position: relative;
+  display: inline-block;
+  padding: 0 10px;
+}
+
+.lens-reticle-graphic {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 105%;
+  height: 125%;
+  pointer-events: none;
+}
+
+.reticle-pulse-dot {
+  animation: iris-glow 1.5s infinite ease-in-out;
+}
+
+/* Styling for Option 2: Cybernetic Eye */
+.cyber-eye-wrapper {
+  position: relative;
+  display: inline-block;
+}
+
+.eye-aperture-graphic {
+  position: absolute;
+  bottom: -18px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 110%;
+  height: auto;
+  pointer-events: none;
+}
+
+/* Shared Micro-interactions for the animations */
+@keyframes iris-glow {
+
+  0%,
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+
+  50% {
+    transform: scale(1.4);
+    opacity: 0.3;
+  }
+}
